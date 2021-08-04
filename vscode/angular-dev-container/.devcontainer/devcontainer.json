@@ -1,0 +1,57 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the README at:
+// https://github.com/microsoft/vscode-dev-containers/tree/v0.187.0/containers/javascript-node
+//For advance configuration, refer to https://code.visualstudio.com/docs/remote/containers-advanced
+{
+	"name": "Codegym Node.js Development Container",
+	"build": {
+		"dockerfile": "Dockerfile",
+		// Update 'VARIANT' to pick a Node version: 12, 14, 16
+		"args": { "VARIANT": "14" }
+	},
+
+	//By default, the volume is created with the name your-project-node_modules
+	//Feels free to change its name to the one you prefer
+	"mounts": [
+		"source=your-project-node_modules,target=${containerWorkspaceFolder}/node_modules,type=volume"
+	],
+
+	// Set *default* container specific settings.json values on container create.
+	"settings": {},
+
+	// Add the IDs of extensions you want installed when the container is created.
+	"extensions": [
+		//Git Plugin
+		"eamodio.gitlens",
+		"donjayamanne.githistory",
+		"mhutchie.git-graph",
+		
+		//Editor Plugin
+		"dbaeumer.vscode-eslint",
+		"visualstudioexptteam.vscodeintellicode",
+		"christian-kohler.npm-intellisense",
+		"steoates.autoimport",
+		"ecmel.vscode-html-css",
+		"streetsidesoftware.code-spell-checker",
+
+		//Live server to reload
+		"ritwickdey.liveserver",
+	],
+
+	// Use 'forwardPorts' to make a list of ports inside the container available locally.
+	"forwardPorts": [5500, 4200],
+
+	//Create node_modules when start in order to mount it with the docker volume for caching node dependencies
+	//If you delete the node_modules folder in the container, it may lose the connection to the volume. Delete the contents of the node_modules folder instead when needed (rm -rf node_modules/* node_modules/.*).
+	//You'll find that an empty node_modules folder gets created locally with this method. This is because the volume mount point in the container is inside the local filesystem bind mount. This is expected and harmless.
+    // Use 'onCreateCommand' to run commands when creating the container
+	"onCreateCommand": "mkdir -p node_modules",
+
+	// Use 'postCreateCommand' to run commands after the container is created.
+	"postCreateCommand": "sudo chown node node_modules",
+
+	// Use 'postStartCommand' to run commands after the container is started.
+	"postStartCommand": "npm install && echo Container started !!!",
+
+	// Comment out connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
+	"remoteUser": "node"
+}

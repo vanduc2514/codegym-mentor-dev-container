@@ -1,0 +1,51 @@
+version: '3'
+
+services:
+  app-springboot:
+    build:
+      context: ..
+      dockerfile: .devcontainer/Dockerfile
+      args:
+        INSTALL_MAVEN: "true"
+        INSTALL_GRADLE: "true"
+        INSTALL_NODE: "false"
+        NODE_VERSION: "lts/*"
+    environment:
+        JDBC_DATABASE_URL: jdbc:mysql://localhost:${MYSQL_PORT}/${MYSQL_DB_NAME}
+        JDBC_DATABASE_USERNAME: ${MYSQL_ROOT_USER}
+        JDBC_DATABASE_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+    volumes:
+      # This is where VS Code should expect to find your project's source code and the value of "workspaceFolder" in .devcontainer/devcontainer.json
+      - ..:/workspace:cached
+      # Gradle dependency cache volume
+      - gradle-cache:/home/vscode/.gradle
+
+    # Overrides default command so things don't shut down after the process ends.
+    command: sleep infinity
+
+    # Runs app on the same network as the database container, allows "forwardPorts" in devcontainer.json function.
+    network_mode: service:db
+
+    # Uncomment the next line to use a non-root user for all processes.
+    # user: vscode
+
+    # Use "forwardPorts" in **devcontainer.json** to forward an app port locally.
+    # (Adding the "ports" property to this file will not forward from a Codespace.)
+
+  db:
+    image: mysql:latest
+    restart: unless-stopped
+    environment:
+        MYSQL_DATABASE: ${MYSQL_DB_NAME}
+        MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+    ports:
+      - "${MYSQL_PORT}:${MYSQL_PORT}"
+    volumes:
+      - mysql-data:/var/lib/mysql 
+      
+    # Add "forwardPorts": ["5432"] to **devcontainer.json** to forward PostgreSQL locally.
+    # (Adding the "ports" property to this file will not forward from a Codespace.)
+
+volumes:
+  mysql-data:
+  gradle-cache:
