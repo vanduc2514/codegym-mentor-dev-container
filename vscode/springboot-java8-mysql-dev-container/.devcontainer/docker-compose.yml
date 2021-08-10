@@ -18,7 +18,9 @@ services:
       # This is where VS Code should expect to find your project's source code and the value of "workspaceFolder" in .devcontainer/devcontainer.json
       - ..:/workspace:cached
       # Gradle dependency cache volume
-      - gradle-cache:/home/vscode/.gradle
+      - gradle-cache:/home/vscode/.gradle:cached
+      # Git config and host ssh-keys
+      - ~/.ssh:/home/vscode/.ssh:cached
 
     # Overrides default command so things don't shut down after the process ends.
     command: sleep infinity
