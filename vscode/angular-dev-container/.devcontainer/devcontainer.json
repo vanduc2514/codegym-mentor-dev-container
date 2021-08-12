@@ -3,17 +3,9 @@
 //For advance configuration, refer to https://code.visualstudio.com/docs/remote/containers-advanced
 {
 	"name": "Codegym Node.js Development Container",
-	"build": {
-		"dockerfile": "Dockerfile",
-		// Update 'VARIANT' to pick a Node version: 12, 14, 16
-		"args": { "VARIANT": "14" }
-	},
-
-	//By default, the volume is created with the name your-project-node_modules
-	//Feels free to change its name to the one you prefer
-	"mounts": [
-		"source=your-project-node_modules,target=${containerWorkspaceFolder}/node_modules,type=volume"
-	],
+	"dockerComposeFile": "docker-compose.yml",
+	"service": "app-angular",
+	"workspaceFolder": "/workspace",
 
 	// Set *default* container specific settings.json values on container create.
 	"settings": {},

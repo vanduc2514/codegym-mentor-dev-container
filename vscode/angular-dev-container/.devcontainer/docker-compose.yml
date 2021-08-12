@@ -1,0 +1,20 @@
+version: '3'
+
+services: 
+  app-angular:
+    build: 
+      context: ..
+      dockerfile: .devcontainer/Dockerfile
+      args: 
+        VARIANT: "14"
+    volumes: 
+      # This is where VS Code should expect to find your project's source code and the value of "workspaceFolder" in .devcontainer/devcontainer.json
+      - ..:/workspace:cached
+      # local node_modules dependencies
+      - your-project-node_modules:/workspace/node_modules:cached
+      # Git config and host ssh-keys
+      - ~/.ssh:/home/node/.ssh:cached
+    command: sleep infinity
+
+volumes: 
+  your-project-node_modules:
