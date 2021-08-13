@@ -16,6 +16,7 @@
 		"eamodio.gitlens",
 		"donjayamanne.githistory",
 		"mhutchie.git-graph",
+		"github.vscode-pull-request-github",
 		
 		//Editor Plugin
 		"dbaeumer.vscode-eslint",

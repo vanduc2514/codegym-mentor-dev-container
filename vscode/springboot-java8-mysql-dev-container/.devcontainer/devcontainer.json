@@ -34,6 +34,7 @@
 		"eamodio.gitlens",
 		"donjayamanne.githistory",
 		"mhutchie.git-graph",
+		"github.vscode-pull-request-github",
 		
 		//Java essential
 		"vscjava.vscode-java-pack",
