@@ -56,7 +56,8 @@
 	//the folder name is not the same as the project name define in settings.gradle. Therefore, each time the
 	//container start, this .gradle folder will be removed to let the extension re-create it again
 	//https://github.com/redhat-developer/vscode-java/issues/1607#issuecomment-705981991
-	"postStartCommand": "sudo chown $USER ~/.gradle && rm -rf .gradle",
+	//Ignore .devcontainer locally so it does not get commit when switch branch
+	"postStartCommand": "sudo chown $USER ~/.gradle && rm -rf .gradle && echo .devcontainer > ./.git/info/exclude",
 
 	// Comment out connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
 	"remoteUser": "vscode"
