@@ -19,6 +19,13 @@
 			"name": "JavaSE-1.8",
 			"path": "/usr/local/sdkman/candidates/java/current"
 		}],
+
+		//There is a known issue with gradle with vscode-java extension which does not synchronize correctly if
+		//the folder name is not the same as the project name define in settings.gradle. Therefore, each time the
+		//container start, this .gradle folder will be removed to let the extension re-create it again
+		//https://github.com/redhat-developer/vscode-java/issues/1607#issuecomment-705981991
+		"java.project.resourceFilters": [".project"],
+		"java.configuration.updateBuildConfiguration": "automatic"
 	},
 	
 	// Add the IDs of extensions you want installed when the container is created.
@@ -43,7 +50,13 @@
 	"forwardPorts": [8080],
 
 	// Use 'postCreateCommand' to run commands after the container is created.
-	"postCreateCommand": "sudo chmod 600 ~/.ssh/* && sudo chown $USER ~/.gradle && sudo chmod 600 ~/.gradle && java -version && echo Container started !!!",
+	"postCreateCommand": "java -version && echo Container started !!!",
+
+	//There is a known issue with gradle with vscode-java extension which does not synchronize correctly if
+	//the folder name is not the same as the project name define in settings.gradle. Therefore, each time the
+	//container start, this .gradle folder will be removed to let the extension re-create it again
+	//https://github.com/redhat-developer/vscode-java/issues/1607#issuecomment-705981991
+	"postStartCommand": "sudo chown $USER ~/.gradle && rm -rf .gradle",
 
 	// Comment out connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
 	"remoteUser": "vscode"
