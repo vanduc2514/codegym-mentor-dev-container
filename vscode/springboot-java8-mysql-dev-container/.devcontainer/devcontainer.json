@@ -50,7 +50,8 @@
 	"forwardPorts": [8080],
 
 	// Use 'postCreateCommand' to run commands after the container is created.
-	"postCreateCommand": "java -version && echo Container started !!!",
+	//Ignore .devcontainer local so git don't track its changes
+	"postCreateCommand": "grep -qxF .devcontainer ./.git/info/exclude || echo .devcontainer >> ./.git/info/exclude && java -version && echo Container started !!!",
 
 	//There is a known issue with gradle with vscode-java extension which does not synchronize correctly if
 	//the folder name is not the same as the project name define in settings.gradle. Therefore, each time the
