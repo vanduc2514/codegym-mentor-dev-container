@@ -51,13 +51,13 @@
 
 	// Use 'postCreateCommand' to run commands after the container is created.
 	//Ignore .devcontainer local so git don't track its changes
-	"postCreateCommand": "grep -qxF .devcontainer ./.git/info/exclude || echo .devcontainer >> ./.git/info/exclude && java -version && echo Container started !!!",
+	"postCreateCommand": "grep -qxF .devcontainer ./.git/info/exclude || echo .devcontainer >> ./.git/info/exclude && sudo chown $USER ~/.gradle && java -version && echo Container started !!!",
 
 	//There is a known issue with gradle with vscode-java extension which does not synchronize correctly if
 	//the folder name is not the same as the project name define in settings.gradle. Therefore, each time the
 	//container start, this .gradle folder will be removed to let the extension re-create it again
 	//https://github.com/redhat-developer/vscode-java/issues/1607#issuecomment-705981991
-	"postStartCommand": "sudo chown $USER ~/.gradle && rm -rf .gradle",
+	"postStartCommand": "rm -rf .gradle",
 
 	// Comment out connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
 	"remoteUser": "vscode"
