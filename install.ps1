@@ -1,3 +1,6 @@
+# This funtion makesuse of the Github API https://docs.github.com/en/rest and recursively download 
+# all of the files in a folder from a Github repo
+# Original Author: https://gist.github.com/chrisbrownie/f20cb4508975fb7fb5da145d3d38024a
 function Get-FilesFromRepo {
 Param(
     [string]$Path,
@@ -11,6 +14,7 @@ Param(
     $files = $objects | where {$_.type -eq "file"} | Select -exp download_url
     $directories = $objects | where {$_.type -eq "dir"}
     
+    # Recursive looking until we find a download_url for a file
     $directories | ForEach-Object { 
         Get-FilesFromRepo -Path $_.path -DestinationPath $($DestinationPath+$_.name)
     }
