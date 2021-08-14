@@ -41,4 +41,5 @@ Param(
 
 }
 
-Get-FilesFromRepo -Path angular -DestinationPath ''
+$containerName=$args[0]
+Get-FilesFromRepo -Path $containerName -DestinationPath ''
