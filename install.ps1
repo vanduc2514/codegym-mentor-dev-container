@@ -16,7 +16,7 @@ Param(
     }
 
     
-    if (-not (Test-Path $DestinationPath)) {
+    if ($DestinationPath -and -not (Test-Path $DestinationPath)) {
         # Destination path does not exist, let's create it
         try {
             New-Item -Path $DestinationPath -ItemType Directory -ErrorAction Stop
@@ -37,4 +37,4 @@ Param(
 
 }
 
-Get-FilesFromRepo -Path angular -DestinationPath ""
+Get-FilesFromRepo -Path angular -DestinationPath ''
