@@ -4,15 +4,11 @@ Project này được tạo ra với mục đích giúp các Mentor của Codegy
 
 Các container này được cài đặt sẵn một số Git Extension và được config với Github Credentials Helper, SSH Key trên Host OS. Mentor có thể thực hiện pull/push bên trong các container.
 
-&nbsp;
-
 ## **Yêu cầu hệ thống**
 
 - [Docker Desktop](https://www.docker.com/products/docker-desktop)  
 - [Visual Studio Code](https://code.visualstudio.com/download)
 - [Extension Remote Containers](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers)
-
-&nbsp;
 
 ## **Download Devcontainer**
 
@@ -39,15 +35,15 @@ Chọn container cần download
 Set-Variable -Name ContainerName -Value #Tên Container
 ```
 
-> Tên Container lấy từ bảng các Devcontainer khả dụng hoặc từ tên folder tương ứng trong repository này
-
+> Tên Container lấy từ bảng các Devcontainer khả dụng hoặc tên folder tương ứng trong repository này
+>
 > Ví dụ: `Set-Variable -Name ContainerName -Value nodejs`
 
-Download Configuration từ Github
+Download Configuration
 
 ```powershell
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 Invoke-Expression (
   Invoke-WebRequest https://github.com/vanduc2514/vscode-devcontainer/raw/master/install.ps1 -UseBasicParsing
 ).Content
-``` 
+```
