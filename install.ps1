@@ -7,9 +7,9 @@ Param(
     [string]$DestinationPath
     )
 
-    $baseUri = "https://api.github.com/"
-    $fullPath = "repos/vanduc2514/vscode-devcontainer/contents/$Path"
-    $wr = Invoke-WebRequest -Uri $($baseuri+$fullPath)
+    $apiHost = "https://api.github.com/"
+    $baseUri = "repos/vanduc2514/vscode-devcontainer/contents/$Path"
+    $wr = Invoke-WebRequest -Uri $($apiHost+$baseUri)
     $objects = $wr.Content | ConvertFrom-Json
     $files = $objects | Where-Object {$_.type -eq "file"} | Select-Object -exp download_url
     $directories = $objects | Where-Object {$_.type -eq "dir"}
@@ -18,7 +18,6 @@ Param(
     $directories | ForEach-Object { 
         Get-FilesFromRepo -Path $_.path -DestinationPath $($DestinationPath+$_.name)
     }
-
     
     if ($DestinationPath -and -not (Test-Path $DestinationPath)) {
         # Destination path does not exist, let's create it
@@ -41,5 +40,5 @@ Param(
 
 }
 
-$containerName=$args[0]
-Get-FilesFromRepo -Path $containerName -DestinationPath ''
+$local:ContainerName
+Get-FilesFromRepo -Path containers/$ContainerName -DestinationPath ''
