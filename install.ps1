@@ -11,8 +11,8 @@ Param(
     $fullPath = "repos/vanduc2514/vscode-devcontainer/contents/$Path"
     $wr = Invoke-WebRequest -Uri $($baseuri+$fullPath)
     $objects = $wr.Content | ConvertFrom-Json
-    $files = $objects | where {$_.type -eq "file"} | Select -exp download_url
-    $directories = $objects | where {$_.type -eq "dir"}
+    $files = $objects | Where-Object {$_.type -eq "file"} | Select-Object -exp download_url
+    $directories = $objects | Where-Object {$_.type -eq "dir"}
     
     # Recursive looking until we find a download_url for a file
     $directories | ForEach-Object { 
