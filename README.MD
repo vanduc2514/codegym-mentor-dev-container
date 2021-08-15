@@ -21,9 +21,11 @@ Các Devcontainer khả dụng:
 
 Chuyển tới thư mục root của dự án, sau đó sử dụng command dưới đây để download Devcontainer tương ứng. Sau khi download thành công, thư mục root sẽ xuất hiện thêm folder `.devcontainer`.
 
-Ngoài cách trên, có thể sử dụng [Downgit](https://downgit.github.io/) để download folder `.devcontainer` phù hợp. Sau đó giải nén vào thư mục root của dự án.
+![devcontainer](https://github.com/vanduc2514/vscode-devcontainer/raw/master/images/_devcontainer.jpg)
 
 Visual Studio Code sẽ sử dụng folder này để tiến hành build và run Devcontainer.
+
+>Ngoài cách trên, có thể sử dụng [Downgit](https://downgit.github.io/) để download folder `.devcontainer` phù hợp. Sau đó giải nén vào thư mục root của dự án.
 
 ### **Windows 10**
 
