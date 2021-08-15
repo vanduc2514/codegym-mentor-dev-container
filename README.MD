@@ -20,8 +20,8 @@ Các Devcontainer khả dụng:
 
 | Tên container | Mô tả |
 | --- | ----------- |
-| [**nodejs**](https://github.com/vanduc2514/vscode-devcontainer/tree/master/containers/nodejs14/.devcontainer) | NodeJS LTS v14 |
-| [**java8-mysql**](https://github.com/vanduc2514/vscode-devcontainer/tree/master/containers/java8-mysql/.devcontainer) | Java 8 (Đã bao gồm Gradle và Maven) + MySQL Latest |
+| [**nodejs14**](https://github.com/vanduc2514/vscode-devcontainer/tree/master/containers/nodejs14/.devcontainer) | NodeJS LTS v14 |
+| [**java8-mysql**](https://github.com/vanduc2514/vscode-devcontainer/tree/master/containers/java8-mysql/.devcontainer) | Java 8 (Đã bao gồm Gradle) + MySQL Latest |
 
 Chuyển tới thư mục root của dự án, sau đó sử dụng command dưới đây để download Devcontainer tương ứng. Sau khi download thành công, thư mục root sẽ xuất hiện thêm folder `.devcontainer`.
 
@@ -36,18 +36,16 @@ Visual Studio Code sẽ sử dụng folder này để tiến hành build và run
 Chọn container cần download
 
 ```powershell
-Set-Variable -Name ContainerName -Value #Tên Container
+$ContainerName="Tên Container"
 ```
 
 > Tên Container lấy từ bảng các Devcontainer khả dụng hoặc từ tên folder tương ứng trong repository này
-
-> Ví dụ: `Set-Variable -Name ContainerName -Value nodejs`
+>
+> Ví dụ: `$ContainerName="nodejs14"`
 
 Download Configuration từ Github
 
 ```powershell
-[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
-Invoke-Expression (
-  Invoke-WebRequest https://github.com/vanduc2514/vscode-devcontainer/raw/master/install.ps1 -UseBasicParsing
-).Content
-``` 
+(Invoke-WebRequest https://github.com/vanduc2514/vscode-devcontainer/raw/master/install.ps1 -UseBasicParsing
+).Content | Invoke-Expression
+```
