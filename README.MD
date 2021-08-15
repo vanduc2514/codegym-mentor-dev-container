@@ -4,6 +4,10 @@ Project này được tạo ra với mục đích giúp các Mentor của Codegy
 
 Các container này được cài đặt sẵn một số Git Extension và được config với Github Credentials Helper, SSH Key trên Host OS. Mentor có thể thực hiện pull/push bên trong các container.
 
+![devcontainer-image](https://code.visualstudio.com/assets/docs/remote/containers-tutorial/connected.png)
+
+Visual Studio Code chạy trong devcontainer
+
 ## **Yêu cầu hệ thống**
 
 - [Docker Desktop](https://www.docker.com/products/docker-desktop)  
