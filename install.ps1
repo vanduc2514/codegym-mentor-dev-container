@@ -7,9 +7,8 @@ Param(
     [string]$DestinationPath
     )
 
-    $apiHost = "https://api.github.com/"
-    $baseUri = "repos/vanduc2514/vscode-devcontainer/contents/$Path"
-    $wr = Invoke-WebRequest -Uri $($apiHost+$baseUri)
+    $githubAPI = "https://api.github.com/repos/vanduc2514/vscode-devcontainer/contents/$Path"
+    $wr = Invoke-WebRequest -Uri $githubAPI
     $objects = $wr.Content | ConvertFrom-Json
     $files = $objects | Where-Object {$_.type -eq "file"} | Select-Object -exp download_url
     $directories = $objects | Where-Object {$_.type -eq "dir"}
