@@ -40,8 +40,7 @@
 	"onCreateCommand": "mkdir -p node_modules",
 
 	// Use 'postCreateCommand' to run commands after the container is created.
-	//Ignore .devcontainer local so git don't track its changes
-	"postCreateCommand": "sudo chown node node_modules && grep -qxF .devcontainer exclude || echo .devcontainer >> exclude",
+	"postCreateCommand": "sudo chown node node_modules",
 
 	// Use 'postStartCommand' to run commands after the container is started.
 	"postStartCommand": "npm install && echo Container started !!!",
